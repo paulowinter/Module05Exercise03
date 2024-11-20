@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Shell.NavBarIsVisible="False"
+             x:Class="Module05Exercise01.MainPage"
+             BackgroundColor="#FCE2E6">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="20">
+            <VerticalStackLayout Spacing="20">
+                <Image
+                    Source="smlogo.png"
+                    HeightRequest="185"
+                    Aspect="AspectFit"
+                    SemanticProperties.Description="dot net bot in a race car number eight" 
+                    HorizontalOptions="Center"/>
+
+
+
+                <Label
+                    Text="Welcome!"
+                    FontSize="30"
+                    TextColor="#333"
+                    HorizontalOptions="Center"
+                    FontFamily="Quicksand"/>
+
+
+                <Frame HasShadow="True"
+                       BorderColor="White"
+                       BackgroundColor="White">
+                    <VerticalStackLayout Spacing="20">
+                        <Entry
+                                Placeholder="Username"
+                                FontSize="18"
+                                TextColor="#333"
+                                BackgroundColor="#FFFFFF"
+                                Margin="0,10,0,10"
+                            FontFamily="Quicksand"/>
+
+                        <Entry
+                                Placeholder="Password"
+                                FontSize="18"
+                                IsPassword="True"
+                                TextColor="#333"
+                                BackgroundColor="#FFFFFF"
+                                HorizontalOptions="Fill"
+                            FontFamily="Quicksand"/>
+
+                        <Button Text="Login"
+                                Clicked="OpenViewEmployee"
+                                BackgroundColor="#F2B2C6"
+                                TextColor="#FFFFFF"
+                                FontSize="18"
+                                Padding="15"
+                                CornerRadius="10"
+                                HorizontalOptions="Fill"
+                                VerticalOptions="End"
+                                FontFamily="Quicksand"/>
+
+
+                    </VerticalStackLayout>
+
+                </Frame>
+               
+            </VerticalStackLayout>
+            </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

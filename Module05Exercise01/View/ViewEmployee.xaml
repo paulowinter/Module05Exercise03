@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Module05Exercise01.ViewModel"
+             x:Class="Module05Exercise01.View.ViewEmployee"
+             Shell.NavBarIsVisible="False"
+             Title="View Employee"
+             BackgroundColor="#FCE2E6">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Label Text="Employee Information"
+                   FontSize="Header"
+                   HorizontalOptions="Center" 
+                   TextColor="#333" 
+                   FontFamily="Quicksand"/>
+
+            <SearchBar Placeholder="Search by name, address, email, contact"
+                       Text="{Binding SearchText}"
+                       HorizontalOptions="FillAndExpand"/>
+            
+            
+
+            <Label x:Name="ConnectionStatusLabel"
+                   Text="{Binding StatusMessage}"
+                   FontSize="18"
+                   HorizontalOptions="Center" 
+                   TextColor="#388E3C" 
+                   Margin="0,5,0,20" 
+                   FontFamily="Quicksand"/>
+
+            <ListView ItemsSource="{Binding EmployeeList}"
+                      SelectedItem="{Binding SelectedEmployee}"
+                      SeparatorVisibility="Default"
+                      HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame Padding="15" Margin="5" 
+                                   BorderColor="Transparent" 
+                                   BackgroundColor="White"
+                                   CornerRadius="10"
+                                   HasShadow="True">
+                                <StackLayout Spacing="5">
+                                    <Label Text="{Binding Name}"
+                                           FontAttributes="Bold" 
+                                           FontSize="18" 
+                                           FontFamily="Quicksand"
+                                           TextColor="#444"/>
+                                    <Label Text="{Binding Address}" 
+                                           FontSize="15" 
+                                           TextColor="#444"
+                                           FontFamily="Quicksand"/>
+                                    <Label Text="{Binding Email}" 
+                                           FontSize="15" 
+                                           TextColor="#444"
+                                           FontFamily="Quicksand"/>
+                                    <Label Text="{Binding ContactNo}" 
+                                           FontSize="15" 
+                                           TextColor="#444"
+                                           FontFamily="Quicksand"/>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer 
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type local:EmployeeViewModel}},Path=SelectedEmployeeCommand}"
+                                            CommandParameter="{Binding .}"/>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Button Text="Load Data"
+                    Command="{Binding LoadDataCommand}"
+                    HorizontalOptions="Center" 
+                    BackgroundColor="#F2B2C6"
+                    TextColor="White"
+                    FontSize="16"
+                    Padding="12"
+                    CornerRadius="8"
+                    WidthRequest="500"
+                    FontFamily="Quicksand"/>
+
+            <Frame HasShadow="True"
+                   BackgroundColor="White"
+                   BorderColor="White">
+                <StackLayout>
+                    <Label Text="Add New Person" FontSize="Large" HorizontalOptions="Center" FontFamily="Quicksand" TextColor="#444"/>
+                    <Entry Placeholder="Name" Text="{Binding NewEmployeeName}"  FontFamily="Quicksand" TextColor="#444" PlaceholderColor="#444"/>
+                    <Entry Placeholder="Address" Text="{Binding NewEmployeeAddress}"  FontFamily="Quicksand" TextColor="#444" PlaceholderColor="#444"/>
+                    <Entry Placeholder="Email" Text="{Binding NewEmployeeEmail}"  FontFamily="Quicksand" TextColor="#444" PlaceholderColor="#444"/>
+                    <Entry Placeholder="Contact No." Text="{Binding NewEmployeeContactNo}"  FontFamily="Quicksand" TextColor="#444" PlaceholderColor="#444"/>
+                </StackLayout>
+            </Frame>
+
+            <Button Text="Add Person" Command="{Binding AddEmployeeCommand}" WidthRequest="500" FontFamily="Quicksand" IsEnabled="{Binding IsEmployeeSelectedAdd}"
+                    BackgroundColor="#F2B2C6"
+                    TextColor="White"/>
+            <Button Text="Add Person" Command="{Binding UpdateEmployeeCommand}" WidthRequest="500" FontFamily="Quicksand" IsEnabled="{Binding IsEmployeeSelected}"
+                    BackgroundColor="#F2B2C6"
+                    TextColor="White"/>
+            <Button Text="Delete Person" Command="{Binding DeleteEmployeeCommand}" WidthRequest="500" FontFamily="Quicksand" IsEnabled="{Binding IsEmployeeSelected}"
+                    BackgroundColor="#F2B2C6"
+                    TextColor="White"/>
+       
+
+            <Button Text="Back" Clicked="BackButton" WidthRequest="500" FontFamily="Quicksand"
+                    BackgroundColor="#F2B2C6"
+                    TextColor="White"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
